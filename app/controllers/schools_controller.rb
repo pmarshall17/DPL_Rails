@@ -6,23 +6,21 @@ class SchoolsController < ApplicationController
 
   def show
   	#GET--show a specific school
-  	@school.find(params[:id])
+  	@school = School.find(params[:id])
   end
 
   def edit
   	#GET--should hsow a form to edit a school
-  	@school.find(params[:id])
+  	@school = School.find(params[:id])
   end
 
   def update
-  	#PUT--update column in a school
-  	@school = School.new(school_params)
-  	if @school.update
-  		#succesfful save in our database
-  		redirect_to school_path(@school)
-  	else
-  		render :edit
-  	end
+      @school = School.find(params[:id])
+      if @school.update(school_params)
+        redirect_to school_path
+      else
+        render :edit
+      end
 	end
 
   def new
@@ -34,7 +32,6 @@ class SchoolsController < ApplicationController
   	#POST---creating a new school record in the database
   	@school = School.new(school_params)
   	if @school.save
-  		#succesfful save in our database
   		redirect_to schools_path
   	else
   		render :new

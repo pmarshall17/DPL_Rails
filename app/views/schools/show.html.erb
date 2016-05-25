@@ -1,2 +1,8 @@
-<h1>Schools#show</h1>
-<p>Find me in app/views/schools/show.html.erb</p>
+<h1><%= @school.name%> Info:</h1>
+<br />
+<h3>
+	This school was built in: <%= @school.year_built %>
+</h3>
+<%= link_to 'All_schools', schools_path %>
+<%= link_to 'Edit', edit_school_path %>
+<%= link_to 'Delete', school_path, method: :delete %>
